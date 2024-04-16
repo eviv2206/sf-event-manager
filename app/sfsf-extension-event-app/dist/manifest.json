@@ -1,0 +1,185 @@
+{
+    "_version": "1.59.0",
+    "sap.app": {
+        "id": "com.sap.event.app.sfsfextensioneventapp",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.13.1",
+            "toolsId": "490bb479-b71a-43f0-b7dc-4585c6fa0d71"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "event/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "Events-manage": {
+                    "semanticObject": "Events",
+                    "action": "manage",
+                    "title": "{{flpTitle}}",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    }
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.122.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.sap.event.app.sfsfextensioneventapp.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "config": {},
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "EventList",
+                    "target": "EventList"
+                },
+                {
+                    "pattern": "Event({key}):?query:",
+                    "name": "EventObjectPage",
+                    "target": "EventObjectPage"
+                },
+                {
+                    "pattern": "Event({key})/users({key2}):?query:",
+                    "name": "UsersEventsObjectPage",
+                    "target": "UsersEventsObjectPage"
+                }
+            ],
+            "targets": {
+                "EventList": {
+                    "type": "Component",
+                    "id": "EventList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/Event",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "Event": {
+                                    "detail": {
+                                        "route": "EventObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "EventObjectPage": {
+                    "type": "Component",
+                    "id": "EventObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "contextPath": "/Event",
+                            "navigation": {
+                                "users": {
+                                    "detail": {
+                                        "route": "UsersEventsObjectPage"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "users/@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "creationMode": {
+                                            "name": "Inline"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "UsersEventsObjectPage": {
+                    "type": "Component",
+                    "id": "UsersEventsObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "contextPath": "/Event/users"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "managedapprouter"
+    }
+}
