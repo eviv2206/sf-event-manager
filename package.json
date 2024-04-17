@@ -20,7 +20,7 @@
     },
     "scripts": {
         "start": "cds-serve",
-        "watch-sfsf-extension-event-app": "cds watch --open sfsf-extension-event-app/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-sfsf-extension-event-app": "cds watch --profile development --open sfsf-extension-event-app/webapp/index.html?sap-ui-xx-viewCache=false",
         "undeploy": "cf undeploy sf-event-manager --delete-services --delete-service-keys --delete-service-brokers",
         "build": "rimraf resources mta_archives && mbt build --mtar archive",
         "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
@@ -37,6 +37,27 @@
                     }
                 }
             },
+            "[development]": {
+                "auth": {
+                  "kind": "mocked",
+                  "users": {
+                    "event.viewer@tester.sap.com": {
+                      "password": "initial",
+                      "ID": "event.viewer@tester.sap.com",
+                      "roles": [
+                        "EventViewer"
+                      ]
+                    },
+                    "event.manager@tester.sap.com": {
+                      "password": "initial",
+                      "ID": "event.manager@tester.sap.com",
+                      "roles": [
+                        "EventManager"
+                      ]
+                    }
+                  }
+                }
+              },
             "[production]": {
                 "db": "hana",
                 "auth": "xsuaa"
