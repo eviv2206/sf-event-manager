@@ -48,11 +48,11 @@ module.exports = cds.service.impl(async function() {
         const endDateTime = new Date(req.data.endDateTime);
 
         if (startDateTime < new Date()) {
-            throw new Error('Start date cannot be in the past');
+            req.error('Start date cannot be in the past');
         }
 
         if (startDateTime > endDateTime) {
-            throw new Error('Start date cannot be after end date');
+            req.error('Start date cannot be after end date');
         }
 
         return req;

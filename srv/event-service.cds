@@ -15,7 +15,7 @@ service EventService @(path: '/event') {
                 grant : [ '*' ],
                 to : [ 'EventManager' ]
             }
-      ]) as projection on my.Event;
+      ])  as projection on my.Event;
 
     entity UsersEvents as
         projection on my.UsersEvents {
