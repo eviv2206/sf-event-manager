@@ -6,7 +6,16 @@ service EventService @(path: '/event') {
     entity UserEntity as projection on my.UserEntity;
     entity EventType as projection on my.EventType;
 
-    entity Event as projection on my.Event;
+    entity Event @(restrict : [
+            {
+                grant : [ 'READ' ],
+                to : [ 'EventViewer' ]
+            },
+            {
+                grant : [ '*' ],
+                to : [ 'EventManager' ]
+            }
+      ]) as projection on my.Event;
 
     entity UsersEvents as
         projection on my.UsersEvents {

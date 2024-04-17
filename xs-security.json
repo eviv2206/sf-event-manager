@@ -4,18 +4,31 @@
   "description": "Security profile of called application",
   "scopes": [
     {
-      "name": "uaa.user",
-      "description": "UAA"
+      "name": "$XSAPPNAME.EventViewer",
+      "description": "EventViewer"
+    },
+    {
+      "name": "$XSAPPNAME.EventManager",
+      "description": "EventManager"
     }
   ],
+  "attributes": [],
   "role-templates": [
     {
-      "name": "Token_Exchange",
-      "description": "UAA",
+      "name": "EventViewer",
+      "description": "generated",
       "scope-references": [
-        "uaa.user"
-      ]
+        "$XSAPPNAME.EventViewer"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "EventManager",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.EventManager"
+      ],
+      "attribute-references": []
     }
-  ],
-  "attributes": []
+  ]
 }

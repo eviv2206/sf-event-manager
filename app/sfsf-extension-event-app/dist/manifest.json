@@ -96,7 +96,6 @@
             "css": []
         },
         "routing": {
-            "config": {},
             "routes": [
                 {
                     "pattern": ":?query:",
@@ -127,6 +126,13 @@
                                 "Event": {
                                     "detail": {
                                         "route": "EventObjectPage"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "condensedTableLayout": false
                                     }
                                 }
                             }

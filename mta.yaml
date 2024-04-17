@@ -78,8 +78,7 @@ modules:
       commands:
         - npm install
         - npm run build:cf
-      supported-platforms:
-        []
+      supported-platforms: []
 resources:
   - name: sf-event-manager-destination-service
     type: org.cloudfoundry.managed-service
@@ -127,6 +126,15 @@ resources:
       config:
         xsappname: sf-event-manager-${org}-${space}
         tenant-mode: dedicated
+        role-collections:
+          - name: "EventManager-${space}"
+            description: Manage Events
+            role-template-references:
+              - $XSAPPNAME.EventManager
+          - name: "EventViewer-${space}"
+            description: View Events
+            role-template-references:
+              - $XSAPPNAME.EventViewer
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
@@ -136,3 +144,4 @@ build-parameters:
       commands:
         - npm ci
         - npx cds build --production
+        - npx rimraf gen/db/src/gen/data
