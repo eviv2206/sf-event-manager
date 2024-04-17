@@ -1,6 +1,4 @@
 {
-  "xsappname": "sf-event-manager",
-  "description": "Security profile of called application",
   "scopes": [
     {
       "name": "$XSAPPNAME.EventViewer",
