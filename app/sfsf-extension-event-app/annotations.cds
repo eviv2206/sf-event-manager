@@ -1,4 +1,5 @@
 using EventService as service from '../../srv/event-service';
+using from '../common';
 
 annotate service.Event with @(UI.TextArrangement: #TextOnly);
 
@@ -33,6 +34,15 @@ annotate service.Event with @(UI: {
         {
             $Type: 'UI.DataField',
             Value: startDateTime,
+        },
+        {
+            $Type: 'UI.DataField',
+            Value: endDateTime,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : users.user.username,
+            Label : '{i18n>participants}',
         }
     ],
     SelectionFields: [
@@ -158,7 +168,7 @@ annotate service.UsersEvents with @(
                 Label                  : '{i18n>email}',
                 Value                  : user.email,
                 ![@Common.FieldControl]: #ReadOnly,
-            },
+            }
         ],
         PresentationVariant: {SortOrder: [{
             $Type     : 'Common.SortOrderType',
@@ -229,4 +239,8 @@ annotate service.UsersEvents with @(
 
 annotate service.UsersEvents with {
     ID @Common.Text: user_userId
+};
+
+annotate service.UserEntity with {
+    username @Common.FieldControl : #ReadOnly
 };

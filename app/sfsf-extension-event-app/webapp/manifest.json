@@ -132,7 +132,9 @@
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
                                     "tableSettings": {
-                                        "condensedTableLayout": false
+                                        "condensedTableLayout": false,
+                                        "enableExport": true,
+                                        "type": "GridTable"
                                     }
                                 }
                             }
@@ -158,8 +160,10 @@
                                 "users/@com.sap.vocabularies.UI.v1.LineItem": {
                                     "tableSettings": {
                                         "creationMode": {
-                                            "name": "Inline"
-                                        }
+                                            "name": "Inline",
+                                            "createAtEnd": true
+                                        },
+                                        "type": "GridTable"
                                     }
                                 }
                             }

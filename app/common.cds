@@ -28,6 +28,15 @@ annotate my.EventType with {
     name  @label: '{i18n>type}'  @title: '{i18n>eventType}';
 }
 
+annotate my.UserEntity with {
+    username @label: '{i18n>username}' @title: '{i18n>username}' @mandatory;
+    firstName @label: '{i18n>firstname}' @title: '{i18n>firstName}' @mandatory;
+    lastName @label: '{i18n>lastname}' @title: '{i18n>lastName}' @mandatory;
+    email @label: '{i18n>email}' @title: '{i18n>email}' @mandatory;
+    department @label: '{i18n>department}' @title: '{i18n>department}' @mandatory;
+}
+
+
 annotate my.UserEntity with @(
     title             : '{i18n>user}',
     UI.TextArrangement: #TextOnly,
